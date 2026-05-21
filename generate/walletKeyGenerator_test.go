@@ -28,9 +28,9 @@ func TestWalletKeyGenerator_GenerateKeysShouldWork(t *testing.T) {
 
 	numToReturn := -1
 	intRandomizer := &mock.IntRandomizerStub{
-		IntnCalled: func(n int) int {
+		IntnCalled: func(n int) (int, error) {
 			numToReturn++
-			return numToReturn
+			return numToReturn, nil
 		},
 	}
 

@@ -51,8 +51,11 @@ func (wkg *walletKeyGenerator) GenerateKeys(blsKeys []*data.BlsKey, maxNumKeysOn
 
 		numKeysOnOwner := maxNumKeysOnOwner
 		if maxNumKeysOnOwner > 1 {
-			// create a random number
-			numKeysOnOwner = wkg.randomizer.Intn(maxNumKeysOnOwner-1) + 1
+			randomKeysOnOwner, err := wkg.randomizer.Intn(maxNumKeysOnOwner - 1)
+			if err != nil {
+				return nil, err
+			}
+			numKeysOnOwner = randomKeysOnOwner + 1
 			if numKeysOnOwner > len(blsKeysPool) {
 				numKeysOnOwner = len(blsKeysPool)
 			}

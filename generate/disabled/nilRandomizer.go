@@ -5,8 +5,8 @@ type NilRandomizer struct {
 }
 
 // Intn returns 0
-func (nr *NilRandomizer) Intn(_ int) int {
-	return 0
+func (nr *NilRandomizer) Intn(_ int) (int, error) {
+	return 0, nil
 }
 
 // IsInterfaceNil returns true if there is no value under the interface
